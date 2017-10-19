@@ -46,16 +46,19 @@ namespace s2d2t1
             string opcao2 = Console.ReadLine();
                 switch(opcao2)
                 {
-                    case "1": 
+                    case "1":
+                        bool cpfvalido = false; 
                         Console.WriteLine("Qual é seu CPF?");
                         string cpf = Console.ReadLine();
-                        bool cpfvalido = checagemcpf(cpf);
+                        cpfvalido = checagemcpf(cpf);
                         
                         break;
                     case "2":
+                        bool cnpjvalido = false; 
                         Console.WriteLine("Qual é seu CNPJ?");
                         string cnpj = Console.ReadLine(); 
-                        bool cnpjvalido = checagemcnpj(cnpj);
+                        cnpjvalido = checagemcnpj(cnpj);
+
                         break;
                     default: 
                         CadastrarCliente();
@@ -64,10 +67,11 @@ namespace s2d2t1
             }
         
     static bool checagemcpf(string cpf)
-        {
+        {   bool cpfvalido = false;
             if(cpf.Length != 11)
             {
-                Console.WriteLine("CPF Inválido");
+                Console.WriteLine("CPF Inválido"); 
+                return cpfvalido;         
             }
             else
             {
@@ -120,21 +124,23 @@ namespace s2d2t1
                 if(digito==cpfult2.ToString())
                 {
                     Console.WriteLine("CPF Válido");
+                    cpfvalido = true;
                 }
                  else
                 {
                      Console.WriteLine("CPF Inválido");      
                 }
-
+                return cpfvalido;
             }
         
         }
     static bool checagemcnpj(string cnpj)
-        {
+        {bool cnpjvalido = false;
             
             if(cnpj.Length != 14)
             {
                 Console.WriteLine("CNPJ Inválido");
+                return cnpjvalido;
             }
             else
             {
@@ -187,12 +193,13 @@ namespace s2d2t1
                 if(digito==cnpjult2.ToString())
                 {
                     Console.WriteLine("CNPJ Válido");
+                    cnpjvalido = true;
                 }
                  else
                 {
                      Console.WriteLine("CNPJ Inválido");
                 }
-
+                return cnpjvalido;
             }
         
         }
