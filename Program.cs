@@ -22,14 +22,15 @@ namespace s2d2t1
             
                 switch(opcao1)
                 {
-                case "1": CadastrarCliente();
-                break;
-                case "2": CadastrarProduto());
-                break;
-                case "3": RealizarVenda();
-                break;
-                case "4": ExtratoCliente("Extrato Cliente");
-                break;
+                case "1": 
+                    CadastrarCliente();
+                    break;
+                // case "2": CadastrarProduto();
+                // break;
+                // case "3": RealizarVenda();
+                // break;
+                // case "4": ExtratoCliente("Extrato Cliente");
+                // break;
                 }
             }
             
@@ -45,20 +46,25 @@ namespace s2d2t1
             string opcao2 = Console.ReadLine();
                 switch(opcao2)
                 {
-                    case "1": checagemcpf();
-                    break;
-                    case "2": checagemcnpj();
-                    break;
-                    default: CadastrarCliente();
-                    break;
+                    case "1": 
+                        Console.WriteLine("Qual é seu CPF?");
+                        string cpf = Console.ReadLine();
+                        bool cpfvalido = checagemcpf(cpf);
+                        
+                        break;
+                    case "2":
+                        Console.WriteLine("Qual é seu CNPJ?");
+                        string cnpj = Console.ReadLine(); 
+                        bool cnpjvalido = checagemcnpj(cnpj);
+                        break;
+                    default: 
+                        CadastrarCliente();
+                        break;
                 }
             }
         
-    static void checagemcpf()
+    static bool checagemcpf(string cpf)
         {
-            Console.WriteLine("Digite seu CPF");
-            string cpf = Console.ReadLine();
-
             if(cpf.Length != 11)
             {
                 Console.WriteLine("CPF Inválido");
@@ -117,33 +123,31 @@ namespace s2d2t1
                 }
                  else
                 {
-                     Console.WriteLine("CPF Inválido");
+                     Console.WriteLine("CPF Inválido");      
                 }
 
             }
         
         }
-    static void checagemcnpj()
+    static bool checagemcnpj(string cnpj)
         {
-            Console.WriteLine("Digite seu CNPJ");
-            string cnpj = Console.ReadLine();
-
+            
             if(cnpj.Length != 14)
             {
-                Console.WriteLine("CPF Inválido");
+                Console.WriteLine("CNPJ Inválido");
             }
             else
             {
-                int[] multiplicador1 = new int[]{10,9,8,7,6,5,4,3,2};
-                int[] multiplicador2 = new int[]{11,10,9,8,7,6,5,4,3,2};
-                string cpf9, cpf10, cpfult2, digito, digito1, digito2;
+                int[] multiplicador1 = new int[]{5,4,3,2,9,8,7,6,5,4,3,2};
+                int[] multiplicador2 = new int[]{6,5,4,3,2,9,8,7,6,5,4,3,2};
+                string cnpj12, cnpj13, cnpjult2, digito, digito1, digito2;
                 int soma1=0, resto1=0, soma2=0, resto2=0;
-                cpf9 = cpf.Substring(0,9);
-                cpfult2 = cpf.Substring(9,2);
+                cnpj12 = cnpj.Substring(0,12);
+                cnpjult2 = cnpj12.Substring(10,2);
 
                 for(int i = 0; i < 9; i++)
                 {
-                    soma1 += Convert.ToInt16(cpf9[i].ToString()) * multiplicador1[i];                     
+                    soma1 += Convert.ToInt16(cnpj12[i].ToString()) * multiplicador1[i];                     
                 }
 
                 resto1 = soma1%11;
@@ -158,12 +162,12 @@ namespace s2d2t1
                 }
                 
                 digito1 = resto1.ToString();
-                cpf10 = cpf9 + digito1;
+                cnpj13 = cnpj12 + digito1;
                               
                 
                 for(int i=0;i<10;i++)
                 {
-                    soma2 += Convert.ToInt32(cpf10[i].ToString()) * multiplicador2[i]; 
+                    soma2 += Convert.ToInt32(cnpj13[i].ToString()) * multiplicador2[i]; 
                 }
                 
                 resto2 = soma2%11;
@@ -180,13 +184,13 @@ namespace s2d2t1
                 digito2 = resto2.ToString();
                 digito = digito1 + digito2;
 
-                if(digito==cpfult2.ToString())
+                if(digito==cnpjult2.ToString())
                 {
-                    Console.WriteLine("CPF Válido");
+                    Console.WriteLine("CNPJ Válido");
                 }
                  else
                 {
-                     Console.WriteLine("CPF Inválido");
+                     Console.WriteLine("CNPJ Inválido");
                 }
 
             }
