@@ -27,10 +27,10 @@ namespace s2d2t1
                     break;
                 case "2": CadastrarProduto();
                 break;
-                // case "3": RealizarVenda();
-                // break;
-                // case "4": ExtratoCliente("Extrato Cliente");
-                // break;
+                case "3": RealizarVenda();
+                break;
+                case "4": ExtratoCliente();
+                break;
                 }
             }
             
@@ -38,11 +38,12 @@ namespace s2d2t1
         }
 static void CadastrarCliente()
             {
+            Console.WriteLine("Cadastro");
             Console.WriteLine("Qual é seu nome?");
             string nome = Console.ReadLine();
             Console.WriteLine("Qual é seu e-mail?");
             string email = Console.ReadLine();
-            Console.WriteLine("Pessoa físia (digite 1), pessoa jurídica (digite 2)");
+            Console.WriteLine("Pessoa física (digite 1), pessoa jurídica (digite 2)");
             string opcao2 = Console.ReadLine();
                 switch(opcao2)
                 {
@@ -124,9 +125,13 @@ static void CadastrarCliente()
                 if(digito==cpfult2.ToString())
                 {
                     Console.WriteLine("CPF Válido");
-                    Console.WriteLine("Cadastro concluído com sucesso");
                     StreamWriter cadastro = new StreamWriter ("Cadastro.txt", true);
-                    cadastro.WriteLine(nome + ";" + email + ";" + cpf + ";");
+                    FileInfo cabecalho = new FileInfo("Cadastro.txt");
+                        if(cabecalho.Length == 0)
+                        {
+                            cadastro.WriteLine ("NOME; E-MAIL; CPF/CNPJ; DATA");
+                        }
+                    cadastro.WriteLine(nome + ";" + email + ";" + cpf + ";" + DateTime.Now);
                     cadastro.Close();
                     cpfvalido = true;
                 }
@@ -198,7 +203,12 @@ static void CadastrarCliente()
                 {
                     Console.WriteLine("CNPJ Válido");
                     StreamWriter cadastro = new StreamWriter ("Cadastro.txt", true);
-                    cadastro.WriteLine(nome + ";" + email + ";" + cnpj + ";");
+                    FileInfo cabecalho = new FileInfo("Cadastro.txt");
+                        if(cabecalho.Length == 0)
+                        {
+                            cadastro.WriteLine ("NOME; E-MAIL; CPF/CNPJ; DATA");
+                        }
+                    cadastro.WriteLine(nome + ";" + email + ";" + cnpj + ";" + DateTime.Now + ";");
                     cadastro.Close();
                     cnpjvalido = true;
                 }
@@ -226,6 +236,105 @@ static void CadastrarProduto(){
     StreamWriter cadastroproduto = new StreamWriter ("Cadastroproduto.txt", true);
             cadastroproduto.WriteLine(nomeproduto + ";" + codigoproduto + ";" + descricaoproduto + ";" + precoproduto + ";");
             cadastroproduto.Close();
+                            }
+static void RealizarVenda()
+        {   
+        Console.WriteLine("Digite seu CPF");
+        string cpfvenda = Console.ReadLine();     
+        string[] linhas = File.ReadAllLines("Cadastro.txt");
+        bool cpfencontrado = false;
+        string linhacliente = "";
+        foreach(string linha in linhas)
+        {
+            if(linha.Contains(cpfvenda) == true)
+                {
+                   cpfencontrado = true;
+                   linhacliente = linha;
+                   break;
+                }
+            else
+                {
+                    cpfencontrado = false;
+                }            
+
+        }
+                if(cpfencontrado == true)
+                {
+                    Console.WriteLine("CPF Válido");
+                    string[] produtos = File.ReadAllLines("Cadastroproduto.txt");
+                    foreach(string produtovenda in produtos)
+                    {
+                    Console.WriteLine(produtovenda);
+                    }
+                    Console.WriteLine("Digite o código do produto");
+                    string codigoproduto = Console.ReadLine();
+                    
+                    foreach(string linhaproduto in produtos)
+                    {
+                        if(linhaproduto.Contains(codigoproduto) == true)
+                            {
+                            StreamWriter cadastrovendas = new StreamWriter ("Cadastrovendas.txt", true);
+                            cadastrovendas.WriteLine("Cliente: " + linhacliente + "Produto: " + linhaproduto + "Data: " + DateTime.Now);
+                            cadastrovendas.Close();
+                            }
+                        
+                    }
+                }
+                else{
+                    Console.WriteLine("CPF Inválido");
+                    CadastrarCliente();
+                }
+    } 
+static void ExtratoCliente()
+{
+    Console.WriteLine("Pessoa física (digite 1), pessoa jurídica (digite 2)");
+        string opcao2 = Console.ReadLine();
+        string nome = "";
+        string email = "";
+            switch(opcao2)
+            {
+                case "1":
+                    bool cpfvalido = false; 
+                    Console.WriteLine("Qual é seu CPF?");
+                    string cpf = Console.ReadLine();
+                    cpfvalido = checagemcpf(cpf,nome,email);
+                    if(cpfvalido == true)
+                    {
+                    string[] compras = File.ReadAllLines("Cadastrovendas.txt");
+                    foreach( string compra in compras)
+                    {
+                        if(compra.Contains(cpf))
+                        {
+                            Console.WriteLine(compra);
+                        }
+                    }
+                    }
+                    break;
+                    
+                case "2":
+                    bool cnpjvalido = false; 
+                    Console.WriteLine("Qual é seu CNPJ?");
+                    string cnpj = Console.ReadLine(); 
+                    cnpjvalido = checagemcnpj(cnpj,nome,email);
+                    if(cnpjvalido == true)
+                    {
+                    string[] compras = File.ReadAllLines("Cadastrovendas.txt");
+                    foreach( string compra in compras)
+                    {
+                        if(compra.Contains(cnpj))
+                        {
+                            Console.WriteLine(compra);
+                        }
+                    }
+                    }
+                    break;
+                
+                default: 
+                        ExtratoCliente();
+                        break;
+                
+                
 }
 }
-}        
+} 
+}       

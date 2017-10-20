@@ -1,1 +1,3 @@
-snickers;98684747473;chocolate;2;
+snickers;98684747473;chocolate;2
+pacoca;34324234;doce;3
+
