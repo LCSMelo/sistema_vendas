@@ -25,8 +25,8 @@ namespace s2d2t1
                 case "1": 
                     CadastrarCliente();
                     break;
-                // case "2": CadastrarProduto();
-                // break;
+                case "2": CadastrarProduto();
+                break;
                 // case "3": RealizarVenda();
                 // break;
                 // case "4": ExtratoCliente("Extrato Cliente");
@@ -36,7 +36,7 @@ namespace s2d2t1
             
             while (opcao1 != "9");
         }
-            static void CadastrarCliente()
+static void CadastrarCliente()
             {
             Console.WriteLine("Qual é seu nome?");
             string nome = Console.ReadLine();
@@ -205,12 +205,27 @@ namespace s2d2t1
                  else
                 {
                      Console.WriteLine("CNPJ Inválido");
-                     Console.WriteLine(digito + cnpjult2);
                 }
                 return cnpjvalido;
             }
         
         }
-    }
+    
 
+
+static void CadastrarProduto(){
+    Console.WriteLine("Qual o nome do produto?");
+    string nomeproduto = Console.ReadLine();
+    Console.WriteLine("Qual o código do produto?");
+    string codigoproduto = Console.ReadLine();
+    Console.WriteLine("Descrição do produto:");
+    string descricaoproduto = Console.ReadLine();
+    Console.WriteLine("Qual o preço do produto?");
+    string precoproduto = Console.ReadLine();
+
+    StreamWriter cadastroproduto = new StreamWriter ("Cadastroproduto.txt", true);
+            cadastroproduto.WriteLine(nomeproduto + ";" + codigoproduto + ";" + descricaoproduto + ";" + precoproduto + ";");
+            cadastroproduto.Close();
+}
+}
 }        
