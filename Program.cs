@@ -274,7 +274,7 @@ static void RealizarVenda()
                         if(linhaproduto.Contains(codigoproduto) == true)
                             {
                             StreamWriter cadastrovendas = new StreamWriter ("Cadastrovendas.txt", true);
-                            cadastrovendas.WriteLine("Cliente: " + linhacliente + "Produto: " + linhaproduto + "Data: " + DateTime.Now);
+                            cadastrovendas.WriteLine("Cliente: " + linhacliente + " Produto: " + linhaproduto + " Data: " + DateTime.Now);
                             cadastrovendas.Close();
                             }
                         
