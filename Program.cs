@@ -5,8 +5,8 @@ namespace s2d2t1
 {
 class Program
 {
-    static void Main(string[] args){
-            string opcao1 = "";
+    static void Main(string[] args)
+        {string opcao1 = "";
 
             do
             {
@@ -65,9 +65,9 @@ class Program
                 }
             }
         
-    static bool checagemcpf(string cpf, string nome, string email){
+    static bool checagemcpf(string cpf, string nome, string email)
        
-        bool cpfvalido = false;
+       {bool cpfvalido = false;
         if(cpf.Length != 11)
         {
             Console.WriteLine("CPF Inválido"); 
@@ -141,7 +141,7 @@ class Program
             return cpfvalido;
         }
         
-    }
+        }
     static bool checagemcnpj(string cnpj, string nome, string email)
         {bool cnpjvalido = false;
             
@@ -222,9 +222,9 @@ class Program
     
 
 
-    static void CadastrarProduto(){
+    static void CadastrarProduto()
     
-        Console.WriteLine("Qual o nome do produto?");
+        {Console.WriteLine("Qual o nome do produto?");
         string nomeproduto = Console.ReadLine();
         Console.WriteLine("Qual o código do produto?");
         string codigoproduto = Console.ReadLine();
@@ -241,10 +241,10 @@ class Program
         {
             cadastroproduto.WriteLine ("NOME DO PRODUTO; CÓDIGO DO PRODUO; DESCRIÇÃO DO PRODUTO; PREÇO;");
         }
-}
+        }
     static void RealizarVenda()
-    {
-        Console.WriteLine("Digite seu CPF");
+    
+        {Console.WriteLine("Digite seu CPF");
         string cpfvenda = Console.ReadLine();     
         string[] linhas = File.ReadAllLines("Cadastro.txt");
         bool cpfencontrado = false;
@@ -297,16 +297,16 @@ class Program
             Console.WriteLine("CPF Inválido");
             CadastrarCliente();
         }
-    } 
+        } 
     static void ExtratoCliente()
-{
-    Console.WriteLine("Pessoa física (digite 1), pessoa jurídica (digite 2)");
-    string opcao2 = Console.ReadLine();
-    string nome = "";
-    string email = "";
-    switch(opcao2)
-    {
-        case "1":
+        
+        {Console.WriteLine("Pessoa física (digite 1), pessoa jurídica (digite 2)");
+        string opcao2 = Console.ReadLine();
+        string nome = "";
+        string email = "";
+        switch(opcao2)
+        {
+            case "1":
                 bool cpfvalido = false; 
                 Console.WriteLine("Qual é seu CPF?");
                 string cpf = Console.ReadLine();
