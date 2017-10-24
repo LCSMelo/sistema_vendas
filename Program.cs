@@ -1,11 +1,10 @@
 ﻿using System;
 using System.IO;
 
-namespace s2d2t1
-{
-class Program
-{
-    static void Main(string[] args)
+namespace Programar
+{class Program
+
+    {static void Main(string[] args)
         {string opcao1 = "";
 
             do
@@ -28,6 +27,24 @@ class Program
                     case "3": RealizarVenda();
                     break;
                     case "4": ExtratoCliente();
+                    break;
+                    case "9":
+                                {Console.WriteLine("Deseja realmente sair(s ou n)");
+                                string sair = Console.ReadLine();
+                                if(sair.ToLower().Contains("s"))
+                                    Environment.Exit(0);
+                                else if(!sair.ToLower().Contains("n"))
+                                
+                                    {opcao1 = "0";
+                                    Console.WriteLine("Opção Inválida");
+                                    }
+                                else
+                                    {opcao1 = "0";
+                                    }
+                            }
+                    
+
+                             
                     break;
                 }
             }
@@ -346,7 +363,7 @@ class Program
                     ExtratoCliente();
                     break;           
                 
-}
-}
-} 
+        }
+        }
+    } 
 }       
