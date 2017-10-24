@@ -3,10 +3,9 @@ using System.IO;
 
 namespace s2d2t1
 {
-    class Program
-    {
-    static void Main(string[] args)
-        {
+class Program
+{
+    static void Main(string[] args){
             string opcao1 = "";
 
             do
@@ -35,7 +34,7 @@ namespace s2d2t1
    
             while (opcao1 != "9");
         }
-    static void CadastrarCliente()
+        static void CadastrarCliente()
             {
             Console.WriteLine("Cadastro");
             Console.WriteLine("Qual é seu nome?");
@@ -223,18 +222,18 @@ namespace s2d2t1
     
 
 
-static void CadastrarProduto(){
+    static void CadastrarProduto(){
     
-    Console.WriteLine("Qual o nome do produto?");
-    string nomeproduto = Console.ReadLine();
-    Console.WriteLine("Qual o código do produto?");
-    string codigoproduto = Console.ReadLine();
-    Console.WriteLine("Descrição do produto:");
-    string descricaoproduto = Console.ReadLine();
-    Console.WriteLine("Qual o preço do produto?");
-    string precoproduto = Console.ReadLine();
+        Console.WriteLine("Qual o nome do produto?");
+        string nomeproduto = Console.ReadLine();
+        Console.WriteLine("Qual o código do produto?");
+        string codigoproduto = Console.ReadLine();
+        Console.WriteLine("Descrição do produto:");
+        string descricaoproduto = Console.ReadLine();
+        Console.WriteLine("Qual o preço do produto?");
+        string precoproduto = Console.ReadLine();
 
-    StreamWriter cadastroproduto = new StreamWriter ("Cadastroproduto.txt", true);
+        StreamWriter cadastroproduto = new StreamWriter ("Cadastroproduto.txt", true);
         cadastroproduto.WriteLine(nomeproduto + ";" + codigoproduto + ";" + descricaoproduto + ";" + precoproduto + ";");
         cadastroproduto.Close();
         FileInfo cabecalho = new FileInfo("Cadastroproduto.txt");
@@ -243,63 +242,63 @@ static void CadastrarProduto(){
             cadastroproduto.WriteLine ("NOME DO PRODUTO; CÓDIGO DO PRODUO; DESCRIÇÃO DO PRODUTO; PREÇO;");
         }
 }
-static void RealizarVenda(){
-
-    Console.WriteLine("Digite seu CPF");
-    string cpfvenda = Console.ReadLine();     
-    string[] linhas = File.ReadAllLines("Cadastro.txt");
-    bool cpfencontrado = false;
-    string linhacliente = "";
-    foreach(string linha in linhas)
+    static void RealizarVenda()
     {
-        if(linha.Contains(cpfvenda) == true)
+        Console.WriteLine("Digite seu CPF");
+        string cpfvenda = Console.ReadLine();     
+        string[] linhas = File.ReadAllLines("Cadastro.txt");
+        bool cpfencontrado = false;
+        string linhacliente = "";
+        foreach(string linha in linhas)
         {
-            cpfencontrado = true;
-            linhacliente = linha;
-            break;
+            if(linha.Contains(cpfvenda) == true)
+            {
+               cpfencontrado = true;
+                linhacliente = linha;
+                break;
+            }
+            else
+            {
+            cpfencontrado = false;
+            }            
+        }
+    
+        if(cpfencontrado == true)
+        {
+            Console.WriteLine("CPF Válido");
+            string[] produtos = File.ReadAllLines("Cadastroproduto.txt");
+            foreach(string produtovenda in produtos)
+            {
+                Console.WriteLine(produtovenda);
+            }
+
+            Console.WriteLine("Digite o código do produto");
+            string codigoproduto = Console.ReadLine();
+                    
+            StreamWriter cadastrovendas = new StreamWriter ("Cadastrovendas.txt", true);
+            FileInfo cabecalho = new FileInfo("Cadastrovendas.txt");
+            if(cabecalho.Length == 0)
+            {
+                cadastrovendas.WriteLine ("NOME DO CLIENTE; E-MAIL; CPF DO CLIENTE; DATA DO CADASTRO; NOME DO PRODUTO; CÓDIGO DO PRODUTO; DESCRIÇÃO DO PRODUTO; PREÇO; DATA DA COMPRA;");
+            }
+                   
+            foreach(string linhaproduto in produtos)
+            {
+                if(linhaproduto.Contains(codigoproduto) == true)
+                {
+                cadastrovendas.WriteLine(linhacliente + ";" + linhaproduto + ";" + DateTime.Now + ";");
+                cadastrovendas.Close();
+                }
+                        
+            }
         }
         else
         {
-            cpfencontrado = false;
-        }            
-
-    }
-    if(cpfencontrado == true)
-    {
-        Console.WriteLine("CPF Válido");
-        string[] produtos = File.ReadAllLines("Cadastroproduto.txt");
-        foreach(string produtovenda in produtos)
-        {
-            Console.WriteLine(produtovenda);
+            Console.WriteLine("CPF Inválido");
+            CadastrarCliente();
         }
-
-        Console.WriteLine("Digite o código do produto");
-        string codigoproduto = Console.ReadLine();
-                    
-        StreamWriter cadastrovendas = new StreamWriter ("Cadastrovendas.txt", true);
-        FileInfo cabecalho = new FileInfo("Cadastrovendas.txt");
-        if(cabecalho.Length == 0)
-        {
-            cadastrovendas.WriteLine ("NOME DO CLIENTE; E-MAIL; CPF DO CLIENTE; DATA DO CADASTRO; NOME DO PRODUTO; CÓDIGO DO PRODUTO; DESCRIÇÃO DO PRODUTO; PREÇO; DATA DA COMPRA;");
-        }
-                   
-        foreach(string linhaproduto in produtos)
-        {
-            if(linhaproduto.Contains(codigoproduto) == true)
-            {
-                cadastrovendas.WriteLine(linhacliente + ";" + linhaproduto + ";" + DateTime.Now + ";");
-                cadastrovendas.Close();
-            }
-                        
-        }
-    }
-    else
-    {
-        Console.WriteLine("CPF Inválido");
-        CadastrarCliente();
-    }
-} 
-static void ExtratoCliente()
+    } 
+    static void ExtratoCliente()
 {
     Console.WriteLine("Pessoa física (digite 1), pessoa jurídica (digite 2)");
     string opcao2 = Console.ReadLine();
