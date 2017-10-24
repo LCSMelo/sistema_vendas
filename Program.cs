@@ -236,6 +236,11 @@ static void CadastrarProduto(){
     StreamWriter cadastroproduto = new StreamWriter ("Cadastroproduto.txt", true);
             cadastroproduto.WriteLine(nomeproduto + ";" + codigoproduto + ";" + descricaoproduto + ";" + precoproduto + ";");
             cadastroproduto.Close();
+             FileInfo cabecalho = new FileInfo("Cadastroproduto.txt");
+                        if(cabecalho.Length == 0)
+                        {
+                            cadastroproduto.WriteLine ("NOME DO PRODUTO; CÓDIGO DO PRODUO; DESCRIÇÃO DO PRODUTO; PREÇO;");
+                        }
                             }
 static void RealizarVenda()
         {   
@@ -269,12 +274,18 @@ static void RealizarVenda()
                     Console.WriteLine("Digite o código do produto");
                     string codigoproduto = Console.ReadLine();
                     
+                     StreamWriter cadastrovendas = new StreamWriter ("Cadastrovendas.txt", true);
+                     FileInfo cabecalho = new FileInfo("Cadastrovendas.txt");
+                        if(cabecalho.Length == 0)
+                        {
+                            cadastrovendas.WriteLine ("NOME DO CLIENTE; E-MAIL; CPF DO CLIENTE; DATA DO CADASTRO; NOME DO PRODUTO; CÓDIGO DO PRODUTO; DESCRIÇÃO DO PRODUTO; PREÇO; DATA DA COMPRA;");
+                        }
+                   
                     foreach(string linhaproduto in produtos)
                     {
                         if(linhaproduto.Contains(codigoproduto) == true)
                             {
-                            StreamWriter cadastrovendas = new StreamWriter ("Cadastrovendas.txt", true);
-                            cadastrovendas.WriteLine("Cliente: " + linhacliente + " Produto: " + linhaproduto + " Data: " + DateTime.Now);
+                            cadastrovendas.WriteLine(linhacliente + ";" + linhaproduto + ";" + DateTime.Now + ";");
                             cadastrovendas.Close();
                             }
                         

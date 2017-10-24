@@ -8,3 +8,13 @@ c:\Users\FIC\Desktop\FabioF\3a semana\sistema_vendas\obj\Debug\netcoreapp2.0\sis
 c:\Users\FIC\Desktop\FabioF\3a semana\sistema_vendas\obj\Debug\netcoreapp2.0\sistema_vendas.AssemblyInfo.cs
 c:\Users\FIC\Desktop\FabioF\3a semana\sistema_vendas\obj\Debug\netcoreapp2.0\sistema_vendas.dll
 c:\Users\FIC\Desktop\FabioF\3a semana\sistema_vendas\obj\Debug\netcoreapp2.0\sistema_vendas.pdb
+C:\Users\Fabio Freller\Documents\Programar\sistema_vendas\bin\Debug\netcoreapp2.0\sistema_vendas.deps.json
+C:\Users\Fabio Freller\Documents\Programar\sistema_vendas\bin\Debug\netcoreapp2.0\sistema_vendas.runtimeconfig.json
+C:\Users\Fabio Freller\Documents\Programar\sistema_vendas\bin\Debug\netcoreapp2.0\sistema_vendas.runtimeconfig.dev.json
+C:\Users\Fabio Freller\Documents\Programar\sistema_vendas\bin\Debug\netcoreapp2.0\sistema_vendas.dll
+C:\Users\Fabio Freller\Documents\Programar\sistema_vendas\bin\Debug\netcoreapp2.0\sistema_vendas.pdb
+C:\Users\Fabio Freller\Documents\Programar\sistema_vendas\obj\Debug\netcoreapp2.0\sistema_vendas.csproj.CoreCompileInputs.cache
+C:\Users\Fabio Freller\Documents\Programar\sistema_vendas\obj\Debug\netcoreapp2.0\sistema_vendas.AssemblyInfoInputs.cache
+C:\Users\Fabio Freller\Documents\Programar\sistema_vendas\obj\Debug\netcoreapp2.0\sistema_vendas.AssemblyInfo.cs
+C:\Users\Fabio Freller\Documents\Programar\sistema_vendas\obj\Debug\netcoreapp2.0\sistema_vendas.dll
+C:\Users\Fabio Freller\Documents\Programar\sistema_vendas\obj\Debug\netcoreapp2.0\sistema_vendas.pdb
